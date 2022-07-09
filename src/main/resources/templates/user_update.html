@@ -1,56 +1,53 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<meta charset="UTF-8">
-<title>Update user</title>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update user</title>
 </head>
 <body>
-<form th:action="@{/logout-custom}" method="POST" name="logoutForm"
-      id="logout">
-    <input type="submit"/>
-</form>
+<div th:insert="~{logout :: topper2}"></div>
 <br>
-<form action="#" th:action="@{/admin/user-update}" th:object="${user}" method="post">
+<form th:action="@{/admin/user-update}" th:object="${user}" method="POST">
     <table>
         <tbody>
         <tr>
-            <td>ID:</td>
+            <th style="text-align: left"><label for="id">ID:</label></th>
+            <td><label for="id"></label><input readonly type="number" th:field="*{id}" id="id" placeholder="ID"></td>
+        </tr>
+        <tr>
+            <th style="text-align: left"><label for="firstName">First name: </label></th>
+            <td><label for="firstName"></label><input type="text" th:field="*{firstName}" id="firstName"
+                                                      placeholder="First Name"></td>
+        </tr>
+        <tr>
+            <th style="text-align: left"><label for="lastName">Last name:</label></th>
+            <td><label for="lastName"></label><input type="text" th:field="*{lastName}" id="lastName"
+                                                     placeholder="Last Name"></td>
+        </tr>
+        <tr>
+            <th style="text-align: left"><label for="age">Age:</label></th>
+            <td><label for="age"></label><input type="number" th:field="*{age}" id="age" placeholder="Age"></td>
+        </tr>
+        <tr>
+            <th style="text-align: left"><label for="email">Email:</label></th>
+            <td><label for="email"></label><input type="email" th:field="*{email}" id="email" placeholder="Email"></td>
+        </tr>
+        <tr>
+            <th style="text-align: left"><label for="password">Password:</label></th>
+            <td><label for="password"></label><input type="password" th:field="*{password}" id="password"
+                                                     placeholder="Password"></td>
+        </tr>
+        <tr>
+            <th style="text-align: left"><label for="roles">Roles:</label></th>
             <td>
-                <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
+                <th:block th:each="role: ${roles}">
+                    <input id="roles" type="checkbox" th:field="*{roles}" th:text="${role.getRoleName()}" th:value="${role.id}">
+                </th:block>
             </td>
         </tr>
         <tr>
-            <td>First name:</td>
-            <td>
-                <input type="text" th:field="*{firstName}" id="firstName" placeholder="First Name">
-            </td>
-        </tr>
-        <tr>
-            <td>Last name:</td>
-            <td>
-                <input type="text" th:field="*{lastName}" id="lastName" placeholder="Last Name">
-            </td>
-        </tr>
-        <tr>
-            <td>Age:</td>
-            <td>
-                <input type="text" th:field="*{age}" id="age" placeholder="Age">
-            </td>
-        </tr>
-        <tr>
-            <td>Email:</td>
-            <td>
-                <input type="text" th:field="*{email}" id="email" placeholder="Email">
-            </td>
-        </tr>
-        <tr>
-            <td>Password:</td>
-            <td>
-                <input type="text" th:field="*{password}" id="password" placeholder="Password">
-            </td>
-        </tr>
-        <tr>
-            <td align="right" colspan="2">
-                <input type="submit" value="Update User">
+            <td style="text-align: right" colspan="2">
+                <button style="font: bold 14px Arial; color: mediumseagreen" type="submit">Edit user</button>
             </td>
         </tr>
         </tbody>

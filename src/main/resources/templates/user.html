@@ -1,47 +1,39 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <meta charset="UTF-8">
 <head>
-<title>Update user</title>
+    <title>User</title>
 </head>
 <body>
-<form th:action="@{/logout}" method="POST" name="logoutForm"
-      id="logout">
-    <input type="submit" value="Logout">
-</form>
+<div th:insert="~{logout :: topper2}"></div>
 <br>
-<form action="#" th:action="@{/admin/user-update}" th:object="${user}" method="post">
+<form th:action="@{/admin/user-update}" th:object="${user}" method="post">
     <table>
         <tbody>
         <tr>
-            <td>ID:</td>
-            <td>
-                <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
-            </td>
+            <th style="text-align: left"><label for="id">ID:</label></th>
+            <td><input readonly type="number" th:field="*{id}" id="id" placeholder="ID"></td>
         </tr>
         <tr>
-            <td>First name:</td>
-            <td>
-                <input readonly type="text" th:field="*{firstName}" id="firstName" placeholder="First Name">
-            </td>
+            <th style="text-align: left"><label for="firstName">First name: </label></th>
+            <td><input readonly type="text" th:field="*{firstName}" id="firstName" placeholder="First Name"></td>
         </tr>
         <tr>
-            <td>Last name:</td>
-            <td>
-                <input readonly type="text" th:field="*{lastName}" id="lastName" placeholder="Last Name">
-            </td>
+            <th style="text-align: left"><label for="lastName">Last name:</label></th>
+            <td><input readonly type="text" th:field="*{lastName}" id="lastName" placeholder="Last Name"></td>
         </tr>
         <tr>
-            <td>Age:</td>
-            <td>
-                <input readonly type="text" th:field="*{age}" id="age" placeholder="Age">
-            </td>
+            <th style="text-align: left"><label for="age">Age:</label></th>
+            <td><input readonly type="number" th:field="*{age}" id="age" placeholder="Age"></td>
         </tr>
         <tr>
-            <td>Email:</td>
-            <td>
-                <input readonly type="text" th:field="*{email}" id="email" placeholder="Email">
-            </td>
+            <th style="text-align: left"><label for="email">Email:</label></th>
+            <td><input readonly type="email" th:field="*{email}" id="email" placeholder="Email"></td>
+        </tr>
+        <tr>
+            <th style="text-align: left"><label for="roles">Roles:</label></th>
+            <td><input readonly type="text" th:value="${#strings.arrayJoin(user.getRolesName(), ' ')}" id="roles"
+                       placeholder="Roles"></td>
         </tr>
         </tbody>
     </table>
