@@ -5,7 +5,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.Collection;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Data
@@ -32,6 +35,7 @@ public class User implements UserDetails {
     @Column(name = "password", nullable = false )
     private String password;
 
+
     @ManyToMany
     @JoinTable(
             name = "users_roles",
@@ -53,6 +57,10 @@ public class User implements UserDetails {
         return email;
     }
 
+    @Override
+    public String getPassword(){
+        return password;
+    }
     @Override
     public boolean isAccountNonExpired() {
         return true;
