@@ -34,12 +34,12 @@
                     <td th:text="*{user.email}"></td>
                     <td th:text="*{#strings.arrayJoin(user.getRolesName(), ' ')}"></td>
                     <td>
-                        <form method="get" th:action="@{user-update/{id}(id=${user.id})}">
+                        <form th:method="GET" th:action="@{user-update/{id}(id=${user.id})}">
                             <button style="font: bold 14px Arial; color: green" type="submit">Edit</button>
                         </form>
                     </td>
                     <td>
-                        <form method="post" th:action="@{user-delete/{id}(id=${user.id})}">
+                        <form th:method="DELETE" th:action="@{user-delete/{id}(id=${user.id})}">
                             <button style="font: bold 14px Arial; color: red" type="submit">Delete</button>
                         </form>
                     </td>

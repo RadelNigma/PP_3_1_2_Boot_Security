@@ -8,19 +8,16 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import ru.kata.spring.boot_security.demo.service.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final SuccessUserHandler successUserHandler;
-//    private final UserDetailsServiceImpl userDetailsService;
 
     @Autowired
-    public WebSecurityConfig(SuccessUserHandler successUserHandler, UserDetailsServiceImpl userDetailsService) {
+    public WebSecurityConfig(SuccessUserHandler successUserHandler) {
         this.successUserHandler = successUserHandler;
-//        this.userDetailsService = userDetailsService;
     }
 
     @Override
@@ -38,20 +35,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .logout().logoutUrl("/logout")
                     .permitAll();
     }
-
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.userDetailsService(userDetailsService);
-//    }
-
-//    @Bean
-//    @Transactional
-//    public DaoAuthenticationProvider daoAuthenticationProvider() {
-//        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-//        authenticationProvider.setPasswordEncoder(passwordEncoder());
-//        authenticationProvider.setUserDetailsService(userDetailsService);
-//        return authenticationProvider;
-//    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {

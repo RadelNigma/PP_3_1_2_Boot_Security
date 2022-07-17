@@ -7,7 +7,7 @@
 <body>
 <div th:insert="~{logout :: topper2}"></div>
 <br>
-<form th:action="@{/admin/user-create}" th:object="${user}" method="post">
+<form th:action="@{/admin/user-create}" th:object="${user}" th:method="POST">
     <table>
         <tbody>
         <tr>

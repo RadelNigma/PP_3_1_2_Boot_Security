@@ -19,17 +19,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     @Transactional
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findUserByEmail(username);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = userRepository.findUserByEmail(email);
         if (user == null) {
-            throw new UsernameNotFoundException("Неизвестый пользователь: " + username);
+            throw new UsernameNotFoundException("Неизвестый пользователь: " + email);
         }
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),user.getAuthorities());
-//        return user;
-//        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),mapRoleToAuthorities(user.getRoles()));
+        return user;
     }
-
-//    private Collection<? extends GrantedAuthority> mapRoleToAuthorities(Collection<Role> roles) {
-//        return roles.stream().map(r -> new SimpleGrantedAuthority(r.getName())).collect(Collectors.toList());
-//    }
 }
